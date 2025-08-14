@@ -100,4 +100,8 @@ Sempre verifique as informações em múltiplas fontes confiáveis.
 
 ## 📜 Licença
 
-Distribuído sob a licença Creative Commons BY-NC. Veja `LICENSE` para mais detalhes.
+Este projeto está licenciado sob a **Creative Commons Attribution-NonCommercial 4.0 International License**.  
+Você pode usar, modificar e distribuir o conteúdo para fins não comerciais, desde que atribua crédito ao autor.  
+Para uso comercial, entre em contato: [joaopedromalta1@gmail.com](mailto:joaopedromalta1@gmail.com)
+
+🔗 [Leia a licença completa](http://creativecommons.org/licenses/by-nc/4.0/)

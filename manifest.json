@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "FakeCheck AI",
+  "version": "0.1",
+  "description": "Analisa notícias em tempo real e indica se são verdadeiras, falsas ou duvidosas.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

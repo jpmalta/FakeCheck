@@ -1,10 +1,12 @@
 # 📰 FakeCheck – Extensão para análise automática de notícias
 
+[PT-BR]🇧🇷
+
 **FakeCheck** é uma extensão de navegador que analisa automaticamente o conteúdo de notícias e artigos online, classificando-os como **provavelmente verdadeiros**, **falsos** ou **duvidosos**.  
 O objetivo é ajudar o leitor a avaliar a **credibilidade** do conteúdo, destacando os trechos que mais influenciaram a análise.
 
 *Obs:* Este projeto foi desenvolvido por estudantes de graduação da PUC CAMPINAS, no 6º período do curso de Sistemas De Informação.
-João Pedro Malta, Gustavo Steluti, José Guilherme, Gabriel Duarte, Victor Oliveira
+João Pedro Malta, Gustavo Steluti, José Guilherme, Gabriel Duarte, João Pedro Simões
 
 ---
 

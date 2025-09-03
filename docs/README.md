@@ -1,16 +1,24 @@
 # 📰 FakeCheck – Extensão para análise automática de notícias
 
-[PT-BR]🇧🇷
+[PT-BR]
 
 **FakeCheck** é uma extensão de navegador que analisa automaticamente o conteúdo de notícias e artigos online, classificando-os como **provavelmente verdadeiros**, **falsos** ou **duvidosos**.  
 O objetivo é ajudar o leitor a avaliar a **credibilidade** do conteúdo, destacando os trechos que mais influenciaram a análise.
 
-*Obs:* Este projeto foi desenvolvido por estudantes de graduação da PUC CAMPINAS, no 6º período do curso de Sistemas De Informação.
+*Obs:* Este é um projeto acadêmico, desenvolvido por estudantes de graduação da PUC CAMPINAS, no 6º período do curso de Sistemas De Informação.
 João Pedro Malta, Gustavo Steluti, José Guilherme, Gabriel Duarte, João Pedro Simões
 
 ---
 
-## ✨ Funcionalidades
+## 🚀 Funcionalidades Principais (MVP)  
+- Captura de textos diretamente das páginas web.  
+- Envio do conteúdo para análise em serviços externos (IA/API).  
+- Destacar trechos suspeitos no DOM.  
+- Interface popup para interação rápida com o usuário.  
+- Histórico básico de análises.  
+---
+
+## ✨ Funcionalidades esperadas
 
 - 🔍 **Análise automática** do texto de notícias em tempo real.  
 - 🎯 **Classificação por nível de confiança**:  
@@ -20,8 +28,6 @@ João Pedro Malta, Gustavo Steluti, José Guilherme, Gabriel Duarte, João Pedro
 - 🖍 **Destaque dos trechos-chave** que influenciaram a avaliação.  
 - 📊 Exibição de **percentual de confiança**.  
 - 🌐 Compatível com principais navegadores baseados em Chromium (Chrome, Edge, Opera) e Firefox.
-
----
 
 ## 🛠 Como funciona
 
@@ -54,13 +60,48 @@ João Pedro Malta, Gustavo Steluti, José Guilherme, Gabriel Duarte, João Pedro
 
 ```
 fakecheck/
-├── manifest.json        # Configuração da extensão
-├── background.js        # Lógica de comunicação e processamento
-├── content.js           # Captura de conteúdo da página
-├── popup.html           # Interface do popup
-├── popup.js             # Script do popup
-├── styles.css           # Estilo da interface
-└── README.md            # Documentação
+│
+├── assets/ # Recursos visuais (logos, imagens gerais)
+│ └── logo.png
+│
+├── content/ # Scripts injetados nas páginas
+│ ├── content.js # Captura e envio de textos da página
+│ ├── highlighter.js # Destaca trechos analisados
+│ └── injector.js # Orquestra injeção de scripts/estilos
+│
+├── background/ # Camada de processamento e eventos
+│ └── background.js # Coordena requests, mensagens e análise
+│
+├── popup/ # Interface popup da extensão
+│ ├── popup.html # Estrutura HTML
+│ ├── popup.js # Lógica de interação do popup
+│ └── popup.css # Estilos do popup
+│
+├── utils/ # Funções auxiliares / camada de domínio
+│ ├── api.js # Comunicação com serviços externos / IA
+│ ├── storage.js # Abstração para storage do navegador
+│ ├── logger.js # Centralização de logs e erros
+│ └── config.js # Constantes e parâmetros de configuração
+│
+├── tests/ # Testes automatizados
+│ ├── content.test.js
+│ ├── api.test.js
+│ └── highlighter.test.js
+│
+├── icons/ # Ícones oficiais da extensão
+│ ├── icon16.png
+│ ├── icon48.png
+│ └── icon128.png
+│
+├── docs/ # Documentação técnica
+│ ├── README.md
+│ ├── arquitetura.md
+│ ├── requisitos.md
+│ └── contribuicao.md
+│
+├── manifest.json # Manifesto da extensão
+├── LICENSE
+└── package.json # (opcional) se usar npm para lint/test/build
 ```
 
 ---
@@ -95,7 +136,7 @@ fakecheck/
 
 ## ⚠️ Aviso Legal
 
-Este projeto é experimental e **não garante 100% de precisão** nas análises.  
+Este projeto é experimental, desenvolvido em ambiente universitário e **não garante 100% de precisão** nas análises.  
 Sempre verifique as informações em múltiplas fontes confiáveis.
 
 ---

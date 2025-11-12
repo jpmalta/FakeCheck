@@ -2,7 +2,8 @@ chrome.runtime.onInstalled.addListener(() => {
   console.log("FakeCheck AI instalado!");
 });
 
-importScripts(); // se precisar polyfills; geralmente não necessário
+// import helper API module which exposes FakeCheckApi.analyzeText
+importScripts('utils/api.js'); // provides self.FakeCheckApi
 
 const API_TIMEOUT_MS = 12000;
 
@@ -43,27 +44,49 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
         const maxSend = 15000;
         const toSend = article.length > maxSend ? article.slice(0, maxSend) : article;
 
-        // 3) call API (replace with your actual URL)
+        // 3) call API via centralized helper
         const apiBase = await getApiBaseUrlFromStorage(); // implement below
-        const res = await fetchWithTimeout(`${apiBase}/predict`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text: toSend })
-        }, API_TIMEOUT_MS);
+        const apiRes = await (self.FakeCheckApi?.analyzeText?.(toSend, '', { baseUrl: apiBase, endpoint: '/predict', timeout: API_TIMEOUT_MS, retries: 1 })
+          || Promise.reject(new Error('NO_API_IMPL')));
 
-        if (!res.ok) {
-          const txt = await res.text().catch(()=>'');
-          sendResponse({ success: false, error: `API_RESPONSE_${res.status}`, detail: txt });
+        if (!apiRes || apiRes.ok === false) {
+          // include structured details for richer error reporting
+          sendResponse({ success: false, error: 'API_ERROR', detail: apiRes || { error: 'no response' } });
           return;
         }
-        const json = await res.json();
-        sendResponse({ success: true, result: json, original_length: article.length });
+        sendResponse({ success: true, result: apiRes.json, original_length: article.length });
       } catch (err) {
         sendResponse({ success: false, error: err.message });
       }
     })();
 
     // indicate that we'll respond asynchronously
+    return true;
+  }
+
+  if (req?.action === 'ANALYZE_TEXT') {
+    (async () => {
+      try {
+        const text = req.text || '';
+        const source = req.source || '';
+        if (!text) {
+          sendResponse({ success: false, error: 'NO_TEXT_PROVIDED' });
+          return;
+        }
+
+        const apiBase = await getApiBaseUrlFromStorage();
+        const apiRes = await (self.FakeCheckApi?.analyzeText?.(text, source || '', { baseUrl: apiBase, endpoint: '/predict', timeout: API_TIMEOUT_MS, retries: 1 })
+          || Promise.reject(new Error('NO_API_IMPL')));
+
+        if (!apiRes || apiRes.ok === false) {
+          sendResponse({ success: false, error: 'API_ERROR', detail: apiRes || { error: 'no response' } });
+          return;
+        }
+        sendResponse({ success: true, result: apiRes.json });
+      } catch (err) {
+        sendResponse({ success: false, error: err.message });
+      }
+    })();
     return true;
   }
 });

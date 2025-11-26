@@ -52,35 +52,35 @@ function setResult(message, options = {}) {
 function sendAnalyzeTab(tabId) {
   lastRequest = { type: 'TAB', tabId };
   setPending(true);
-  setResult('Extraindo texto da página...', { type: 'info' });
+  setResult('Extraindo texto da pagina...', { type: 'info' });
   chrome.runtime.sendMessage({ action: 'ANALYZE_CURRENT_TAB', tabId }, (resp) => {
     setPending(false);
     if (!resp) return setResult('Sem resposta do background.', { type: 'error', showRetry: true });
     if (!resp.success) return setResult('Erro ao analisar página: ' + (resp.error || 'unknown'), { type: 'error', details: resp.detail || null, showRetry: true });
-    setResult('Análise recebida', { type: 'success', details: resp.result });
+    setResult('Analise recebida', { type: 'success', details: resp.result });
   });
 }
 
 function sendAnalyzeText(text, source) {
   lastRequest = { type: 'TEXT', text, source };
   setPending(true);
-  setResult('Enviando texto para verificação...', { type: 'info' });
+  setResult('Enviando texto para verificacao...', { type: 'info' });
   chrome.runtime.sendMessage({ action: 'ANALYZE_TEXT', text, source }, (resp) => {
     setPending(false);
     if (!resp) return setResult('Sem resposta do background.', { type: 'error', showRetry: true });
     if (!resp.success) return setResult('Erro ao analisar texto: ' + (resp.error || 'unknown'), { type: 'error', details: resp.detail || null, showRetry: true });
-    setResult('Análise recebida', { type: 'success', details: resp.result });
+    setResult('Analise recebida', { type: 'success', details: resp.result });
   });
 }
 
 async function analyzeCurrentTab() {
   try {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    if (!tab?.id) return setResult('Não foi possível identificar a aba ativa.', { type: 'error' });
+    if (!tab?.id) return setResult('Nao foi possível identificar a aba ativa.', { type: 'error' });
     sendAnalyzeTab(tab.id);
   } catch (err) {
     setPending(false);
-    setResult('Erro ao pedir extração: ' + err.message, { type: 'error', showRetry: false });
+    setResult('Erro ao pedir extracao: ' + err.message, { type: 'error', showRetry: false });
   }
 }
 

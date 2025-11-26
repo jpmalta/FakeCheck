@@ -7,14 +7,14 @@
 <body>
   <h3>FakeCheck AI</h3>
   <div class="popup-section">
-    <button id="check">Extrair texto da página</button>
+    <button id="check">Extrair texto da pagina</button>
   </div>
 
   <hr />
 
   <div class="popup-section">
     <label for="userText">Texto a verificar</label>
-    <textarea id="userText" rows="6" placeholder="Cole aqui o texto que deseja verificar..."></textarea>
+    <textarea id="userText" rows="6" placeholder="Cole aqui o texto que deseja verificar..." style="display:block; width:100%; margin-top:6px;"></textarea>
 
     <label for="sourceUrl">Fonte / URL (opcional)</label>
     <input id="sourceUrl" type="text" placeholder="https://exemplo.com/artigo" />
@@ -26,7 +26,7 @@
     <div id="spinner" class="fc-spinner" hidden aria-hidden="true"></div>
     <div id="message" class="fc-message"></div>
     <pre id="details" class="fc-details" hidden></pre>
-    <button id="retryBtn" class="retry-btn" hidden>Retry</button>
+    <button id="retryBtn" class="retry-btn" hidden>Tentar novamente</button>
   </div>
 
   <script src="popup.js"></script>

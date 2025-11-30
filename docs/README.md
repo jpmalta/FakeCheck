@@ -6,7 +6,7 @@
 O objetivo é ajudar o leitor a avaliar a **credibilidade** do conteúdo, destacando os trechos que mais influenciaram a análise.
 
 *Obs:* Este é um projeto acadêmico, desenvolvido por estudantes de graduação da PUC CAMPINAS, no 6º período do curso de Sistemas De Informação.
-João Pedro Malta, Gustavo Steluti, José Guilherme, Gabriel Duarte, João Pedro Simões
+João Pedro Malta, Gustavo Steluti
 
 ---
 
